@@ -1,0 +1,15 @@
+{
+    "word2idx":"dataset/WikiWord/word2idx.json",
+    "vocab_size":60000,
+    "max_seq_len":700,
+    "embedding_size":200,
+    "train_txt_path":"dataset/WikiWord/train.txt",
+    "eval_txt_path":"dataset/WikiWord/validation.txt",
+    "test_txt_path":"dataset/WikiWord/test.txt",
+    "batch_size":64,
+    "epoch":50,
+    "log_dir":"logs/exp0",
+    "display_step":100,
+    "lr":0.001,
+    "patient_epoch":5
+}
