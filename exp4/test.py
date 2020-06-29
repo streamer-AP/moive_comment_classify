@@ -20,6 +20,7 @@ if __name__ == "__main__":
     net.load_state_dict(torch.load("best_model.pth"))
     acc_cnt=0
     cnt=0
+
     with open(cfg["test_txt_path"],"r") as f:
         lines=f.readlines()
         for line in lines:
@@ -32,7 +33,7 @@ if __name__ == "__main__":
             for i,word in enumerate(line[1:]):
                 encoded_line[0][i]=word2idx[word]
             encoded_line=torch.from_numpy(encoded_line).cuda()
-            predict=torch.argmax(net(encoded_line)[0])
+            predict=torch.argmax(net(encoded_line[:2]))
             print(f"sentence: {''.join(line[1:])},\n target emotion {target}, predict emotion {predict}")
             if target==predict:
                 acc_cnt+=1

@@ -9,7 +9,7 @@ class TextClassify(nn.Module):
         self.conv1=nn.Conv1d(max_seq_len,64,1)
         self.conv2=nn.Conv1d(64,1,1)
 
-        self.classify=nn.Linear(64,2)
+        self.classify=nn.Linear(128,2)
     def forward(self,x):
         x=self.embedding(x)
         x,h=self.lstm(x)
@@ -18,5 +18,7 @@ class TextClassify(nn.Module):
         x=self.conv2(x)
         x=nn.functional.relu(x)
         x=torch.squeeze(x)
+        #x=self.classify(x)
         x=nn.functional.relu(x)
+
         return x

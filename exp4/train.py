@@ -44,9 +44,12 @@ def train(cfg, net, train_dl, eval_dl):
             train_loss_avg.update(loss.item(), len(target))
             acc_cnt = torch.sum(torch.argmax(predict, dim=1) == target).item()
             train_acc_avg.update(acc_cnt/float(len(target)))
+
+
             if step % cfg["display_step"] == 0:
                 print(
                     f"epoch {epoch}, step {step}, train acc {train_acc_avg.avg()}, train loss {train_loss_avg.avg()}")
+            
         writer.add_scalar("train_loss", train_loss_avg.avg(), epoch)
         writer.add_scalar("train_acc", train_acc_avg.avg(), epoch)
         acc_cnt=0
@@ -86,7 +89,6 @@ if __name__ == "__main__":
     train_ds = Text_Dataset(cfg["train_txt_path"],
                             word2idx, cfg["max_seq_len"],augment=True)
     eval_ds = Text_Dataset(cfg["eval_txt_path"], word2idx, cfg["max_seq_len"])
-    train_dl = DataLoader(
-        train_ds, batch_size=cfg["batch_size"], shuffle=True, drop_last=True)
+    train_dl = DataLoader(train_ds, batch_size=cfg["batch_size"], shuffle=True, drop_last=True)
     eval_dl = DataLoader(eval_ds, batch_size=cfg["batch_size"], shuffle=False)
     train(cfg, net, train_dl, eval_dl)

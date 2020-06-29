@@ -6,10 +6,10 @@
     "train_txt_path":"dataset/WikiWord/train.txt",
     "eval_txt_path":"dataset/WikiWord/validation.txt",
     "test_txt_path":"dataset/WikiWord/test.txt",
-    "batch_size":64,
+    "batch_size":128,
     "epoch":50,
     "log_dir":"logs/exp0",
-    "display_step":100,
-    "lr":0.001,
+    "display_step":50,
+    "lr":0.0001,
     "patient_epoch":5
 }
